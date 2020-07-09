@@ -1,8 +1,7 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./BurgerIngredient.module.css";
-import { render } from "@testing-library/react";
 
 interface typ {
   type: string;
@@ -13,9 +12,6 @@ class BurgerIngredient extends Component<typ> {
     let ingredient = null;
 
     switch (this.props.type) {
-      case "bread-bottom":
-        ingredient = <div className={classes.BreadBottom}></div>;
-        break;
       case "bread-top":
         ingredient = (
           <div className={classes.BreadTop}>
@@ -23,6 +19,9 @@ class BurgerIngredient extends Component<typ> {
             <div className={classes.Seeds2}></div>
           </div>
         );
+        break;
+      case "bread-bottom":
+        ingredient = <div className={classes.BreadBottom}></div>;
         break;
       case "meat":
         ingredient = <div className={classes.Meat}></div>;
@@ -43,6 +42,7 @@ class BurgerIngredient extends Component<typ> {
     return ingredient;
   }
 }
+
 BurgerIngredient.propTypes = {
   type: PropTypes.string.isRequired,
 };
