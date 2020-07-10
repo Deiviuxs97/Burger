@@ -1,8 +1,15 @@
 import React from "react";
 
 import Aux from "../../../hoc/Auxiliary";
+import Button from "../../UI/Button/Button";
 
 interface props {
+  purchaseContinued:
+    | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    | undefined;
+  purchaseCancelled:
+    | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    | undefined;
   ingredients: { [x: string]: React.ReactNode };
 }
 
@@ -21,8 +28,12 @@ const orderSummary = (props: props) => {
       <p>A delicious burger with the following ingredients:</p>
       <ul>{ingredientSummary}</ul>
       <p>Continue to Checkout?</p>
-      <button>CANCEL</button>
-      <button>CONTINUE</button>
+      <Button btnType="Danger" clicked={props.purchaseCancelled}>
+        CANCEL
+      </Button>
+      <Button btnType="Success" clicked={props.purchaseContinued}>
+        CONTINUE
+      </Button>
     </Aux>
   );
 };

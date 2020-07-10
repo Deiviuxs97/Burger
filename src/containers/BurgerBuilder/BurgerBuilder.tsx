@@ -14,11 +14,11 @@ interface burgerBuilder {
 }
 
 interface ingr {
-  [igKey: string]: any;
+  [igKey: string]: number;
   salad: number;
   bacon: number;
-  cheese?: number;
-  meat?: number;
+  cheese: number;
+  meat: number;
 }
 
 const INGREDIENT_PRICES = {
@@ -91,6 +91,10 @@ class BurgerBuilder extends Component {
     this.setState({ purchasing: false });
   };
 
+  purchaseContinueHandler = () => {
+    alert("You continue!");
+  };
+
   render() {
     const disabledInfo: { [key: string]: number | boolean } = {
       ...this.state.ingredients,
@@ -106,7 +110,11 @@ class BurgerBuilder extends Component {
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            purchaseCancelled={this.purchaseCancelHandler}
+            purchaseContinued={this.purchaseContinueHandler}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

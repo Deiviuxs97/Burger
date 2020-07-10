@@ -4,13 +4,15 @@ import classes from "./Modal.module.css";
 import Aux from "../../../hoc/Auxiliary";
 import Backdrop from "../Backdrop/Backdrop";
 
-const modal = (props: {
+interface props {
   show: boolean;
   modalClosed:
     | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
     | undefined;
   children: React.ReactNode;
-}) => (
+}
+
+const modal = (props: props) => (
   <Aux>
     <Backdrop show={props.show} clicked={props.modalClosed} />
     <div
