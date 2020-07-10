@@ -5,7 +5,6 @@ import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 
 interface burger {
   ingredients: { [igKey: string]: number };
-  // ingredients: any;
 }
 
 const burger = (props: burger) => {
