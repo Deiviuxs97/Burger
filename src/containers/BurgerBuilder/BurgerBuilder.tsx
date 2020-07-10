@@ -34,7 +34,13 @@ class BurgerBuilder extends Component {
     purchasable: false,
   };
 
-  updatePurchaseState(ingredients) {
+  updatePurchaseState(ingredients: {
+    [x: string]: any;
+    salad?: number;
+    bacon?: number;
+    cheese?: number;
+    meat?: number;
+  }) {
     const sum = Object.keys(ingredients)
       .map((igKey) => {
         return ingredients[igKey];

@@ -4,6 +4,7 @@ import classes from "./BuildControls.module.css";
 import BuildControl from "./BuildControl/BuildControl";
 
 interface buildControls {
+  purchasable: boolean;
   ingredientAdded: Function;
   ingredientRemoved: Function;
   disabled: { [key: string]: number | boolean };
@@ -29,7 +30,7 @@ const buildControls = (props: buildControls) => (
         disabled={props.disabled[ctrl.type]}
       />
     ))}
-    <button className={classes.OrederButton} disabled={!props.purchasable}>
+    <button className={classes.OrderButton} disabled={!props.purchasable}>
       ORDER NOW
     </button>
   </div>
