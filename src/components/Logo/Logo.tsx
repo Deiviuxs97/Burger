@@ -5,8 +5,8 @@ import classes from "./Logo.module.css";
 
 interface props {}
 
-const logo = (props: { height: any }) => (
-  <div style={{ height: props.height }}>
+const logo = () => (
+  <div className={classes.Logo}>
     <img src={burgerLogo} alt="myBurger" />
   </div>
 );
