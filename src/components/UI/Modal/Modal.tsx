@@ -13,7 +13,7 @@ interface props {
 }
 
 class Modal extends Component<props> {
-  shouldComponentUpdate(nextProps: any, nextState: any) {
+  shouldComponentUpdate(nextProps: props, nextState: props) {
     return (
       nextProps.show !== this.props.show ||
       nextProps.children !== this.props.children

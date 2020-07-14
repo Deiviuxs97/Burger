@@ -18,13 +18,13 @@ const withErrorHandler = (WrappedComponent: any, axios: any) => {
     resInterceptor: any;
 
     componentWillMount() {
-      this.reqInterceptor = axios.interceptors.request.use((req: any) => {
+      this.reqInterceptor = axios.interceptors.request.use((req: pop) => {
         this.setState({ error: null });
         return req;
       });
       this.resInterceptor = axios.interceptors.response.use(
-        (res: any) => res,
-        (error: any) => {
+        (res: pop) => res,
+        (error: pop) => {
           this.setState({ error: error });
         }
       );
