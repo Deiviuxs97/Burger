@@ -5,7 +5,7 @@ import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Backdrop from "../Backdrop/Backdrop";
 
 interface props {
-  show: boolean;
+  show: any;
   modalClosed:
     | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
     | undefined;
@@ -14,7 +14,10 @@ interface props {
 
 class Modal extends Component<props> {
   shouldComponentUpdate(nextProps: any, nextState: any) {
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children
+    );
   }
   componentWillUpdate() {
     console.log("[Modal] WillUpdate");
