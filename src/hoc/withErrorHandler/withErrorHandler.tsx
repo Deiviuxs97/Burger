@@ -3,11 +3,9 @@ import React, { Component } from "react";
 import Modal from "../../components/UI/Modal/Modal";
 import Aux from "../Auxiliary/Auxiliary";
 
-interface pop {
-  interceptors: any;
-}
+interface pop {}
 
-const withErrorHandler = (WrappedComponent: any, axios: pop) => {
+const withErrorHandler = (WrappedComponent: any, axios: any) => {
   return class extends Component<pop> {
     state = {
       error: {
