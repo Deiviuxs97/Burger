@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./Backdrop.module.css";
 
 interface props {
-  show?: boolean;
+  show: { message: string } | string | boolean;
   clicked?:
     | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
     | undefined;

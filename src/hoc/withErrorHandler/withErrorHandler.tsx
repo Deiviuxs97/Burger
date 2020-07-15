@@ -4,18 +4,18 @@ import Modal from "../../components/UI/Modal/Modal";
 import Aux from "../Auxiliary/Auxiliary";
 
 interface pop {
-  show: any;
+  interceptors: any;
 }
 
-const withErrorHandler = (WrappedComponent: any, axios: any) => {
-  return class extends Component {
+const withErrorHandler = (WrappedComponent: any, axios: pop) => {
+  return class extends Component<pop> {
     state = {
       error: {
         message: "",
       },
     };
-    reqInterceptor: any;
-    resInterceptor: any;
+    reqInterceptor: pop | undefined;
+    resInterceptor: pop | undefined;
 
     componentWillMount() {
       this.reqInterceptor = axios.interceptors.request.use((req: pop) => {

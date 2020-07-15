@@ -5,7 +5,7 @@ import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Backdrop from "../Backdrop/Backdrop";
 
 interface props {
-  show: any;
+  show: { message: string } | string | boolean;
   modalClosed:
     | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
     | undefined;

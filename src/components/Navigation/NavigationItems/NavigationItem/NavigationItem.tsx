@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
 import classes from "./NavigationItem.module.css";
-import { checkPropTypes } from "prop-types";
 
 interface props {
   children: ReactNode;
