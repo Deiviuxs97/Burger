@@ -6,6 +6,8 @@ import classes from "./CheckoutSummary.module.css";
 
 const checkoutSummary = (props: {
   ingredients: { [igKey: string]: number };
+  checkoutCancelled: any;
+  checkoutContinued: any;
 }) => {
   return (
     <div className={classes.CheckoutSummary}>
@@ -13,12 +15,12 @@ const checkoutSummary = (props: {
       <div style={{ width: "100%", margin: "auto" }}>
         <Burger ingredients={props.ingredients} />
       </div>
-      {/* <Button btnType="Danger" clicked>
+      <Button btnType="Danger" clicked={props.checkoutCancelled}>
         CANCEL
       </Button>
-      <Button btnType="Success" clicked>
+      <Button btnType="Success" clicked={props.checkoutContinued}>
         CANCEL
-      </Button> */}
+      </Button>
     </div>
   );
 };
