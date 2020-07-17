@@ -17,7 +17,7 @@ interface burgerBuilder {
   meat: number;
 }
 
-interface ingr {
+export interface ingr {
   [igKey: string]: number;
   salad: number;
   bacon: number;

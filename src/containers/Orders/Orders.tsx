@@ -3,12 +3,25 @@ import React, { Component } from "react";
 import Order from "../../components/Order/Order";
 import axios from "../../axios-orders";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import { ingr } from "../BurgerBuilder/BurgerBuilder";
 
-class Orders extends Component {
+interface orderStatePro {
+  orders: [
+    {
+      id: number;
+      ingredients: ingr;
+      price: number;
+    }
+  ];
+  loading: boolean;
+}
+
+class Orders extends Component<orderStatePro> {
   state = {
     orders: [],
     loading: true,
   };
+
   componentDidMount() {
     axios
       .get("/orders.json")
@@ -23,10 +36,11 @@ class Orders extends Component {
         this.setState({ loading: false });
       });
   }
+
   render() {
     return (
       <div>
-        {this.state.orders.map((order) => (
+        {this.state.orders.map((order: any) => (
           <Order
             key={order.id}
             ingredients={order.ingredients}
