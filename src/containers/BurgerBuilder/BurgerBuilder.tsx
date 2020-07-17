@@ -17,7 +17,7 @@ interface burgerBuilder {
   meat: number;
 }
 
-export interface ingr {
+export interface ingredientsBurgerBuilder {
   [igKey: string]: number;
   salad: number;
   bacon: number;
@@ -26,7 +26,7 @@ export interface ingr {
 }
 
 interface burgerBuilderStateProps {
-  ingredients: ingr;
+  ingredients: ingredientsBurgerBuilder;
   totalPrice: number;
   purchasable: boolean;
   purchasing: boolean;
@@ -69,7 +69,7 @@ class BurgerBuilder extends Component<pop> {
       });
   }
 
-  updatePurchaseState(ingredients: ingr) {
+  updatePurchaseState(ingredients: ingredientsBurgerBuilder) {
     const sum = Object.keys(ingredients)
       .map((igKey) => {
         return ingredients[igKey];

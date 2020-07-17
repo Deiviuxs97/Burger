@@ -3,12 +3,19 @@ import React from "react";
 import Burger from "../../Burger/Burger";
 import Button from "../../UI/Button/Button";
 import classes from "./CheckoutSummary.module.css";
+import { ingredientsBurgerBuilder } from "../../../containers/BurgerBuilder/BurgerBuilder";
 
-const checkoutSummary = (props: {
-  ingredients: { [igKey: string]: number };
-  checkoutCancelled: any;
-  checkoutContinued: any;
-}) => {
+interface checkoutSummaryProps {
+  ingredients: ingredientsBurgerBuilder;
+  checkoutContinued:
+    | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    | undefined;
+  checkoutCancelled:
+    | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    | undefined;
+}
+
+const checkoutSummary = (props: checkoutSummaryProps) => {
   return (
     <div className={classes.CheckoutSummary}>
       <h1>We hope it tastes well!</h1>

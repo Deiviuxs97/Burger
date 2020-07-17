@@ -5,15 +5,24 @@ import Aux from "../Auxiliary/Auxiliary";
 
 interface pop {}
 
-const withErrorHandler = (WrappedComponent: any, axios: any) => {
+interface axiosWithErrorHandler {
+  interceptors: any;
+}
+interface wrappedComponentWithErrorHandler {}
+
+const withErrorHandler = (
+  WrappedComponent: Function,
+  axios: axiosWithErrorHandler
+) => {
   return class extends Component<pop> {
     state = {
       error: {
         message: "",
       },
     };
-    reqInterceptor: pop | undefined;
-    resInterceptor: pop | undefined;
+
+    reqInterceptor?: pop;
+    resInterceptor?: pop;
 
     componentWillMount() {
       this.reqInterceptor = axios.interceptors.request.use((req: pop) => {

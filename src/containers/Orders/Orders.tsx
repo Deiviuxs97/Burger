@@ -3,17 +3,23 @@ import React, { Component } from "react";
 import Order from "../../components/Order/Order";
 import axios from "../../axios-orders";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import { ingr } from "../BurgerBuilder/BurgerBuilder";
+import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 
 interface orderStatePro {
   orders: [
     {
       id: number;
-      ingredients: ingr;
+      ingredients: ingredientsBurgerBuilder;
       price: number;
     }
   ];
   loading: boolean;
+}
+
+interface ordersOrder {
+  price: string;
+  ingredients: ingredientsBurgerBuilder;
+  id: string | number | undefined;
 }
 
 class Orders extends Component<orderStatePro> {
@@ -40,7 +46,7 @@ class Orders extends Component<orderStatePro> {
   render() {
     return (
       <div>
-        {this.state.orders.map((order: any) => (
+        {this.state.orders.map((order: ordersOrder) => (
           <Order
             key={order.id}
             ingredients={order.ingredients}

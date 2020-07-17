@@ -3,30 +3,21 @@ import { Route } from "react-router-dom";
 
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
-import { RouteComponentProps } from "react-router-dom";
-import { any } from "prop-types";
-
-interface ingr {
-  [igKey: string]: number;
-  salad: number;
-  bacon: number;
-  cheese: number;
-  meat: number;
-}
+import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 
 interface checkOutStateProps {
-  ingredients?: ingr;
-  history?: any;
-  location?: any;
-  price?: number;
-  match?: any;
+  ingredients: ingredientsBurgerBuilder;
+  history: any;
+  location: any;
+  price: number;
+  match: any;
 }
 
 class Checkout extends Component<checkOutStateProps> {
   state = {
-    ingredients: {} as ingr,
+    ingredients: {} as ingredientsBurgerBuilder,
     price: 0,
-    totalPrice: any,
+    totalPrice: 0,
   };
 
   componentWillMount() {

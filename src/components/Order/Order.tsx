@@ -1,8 +1,14 @@
 import React from "react";
 
 import classes from "./Order.module.css";
+import { ingredientsBurgerBuilder } from "../../containers/BurgerBuilder/BurgerBuilder";
 
-const order = (props: any) => {
+interface orderProps {
+  price: string;
+  ingredients: ingredientsBurgerBuilder;
+}
+
+const order = (props: orderProps) => {
   const ingredients = [];
   for (let ingredientName in props.ingredients) {
     ingredients.push({

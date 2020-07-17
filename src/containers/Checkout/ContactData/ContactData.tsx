@@ -6,10 +6,11 @@ import Button from "../../../components/UI/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import classes from "./ContactData.module.css";
 import axios from "../../../axios-orders";
+import { ingredientsBurgerBuilder } from "../../BurgerBuilder/BurgerBuilder";
 
 interface contactDataProps extends RouteComponentProps {
-  price: any;
-  ingredients: any;
+  price: number;
+  ingredients: ingredientsBurgerBuilder;
 }
 
 interface contactDataState {
@@ -17,6 +18,10 @@ interface contactDataState {
   email: string;
   address: {};
   loading: boolean;
+}
+
+interface ContactDataEvent {
+  preventDefault: Function;
 }
 
 class ContactData extends Component<contactDataProps, contactDataState> {
@@ -30,7 +35,7 @@ class ContactData extends Component<contactDataProps, contactDataState> {
     loading: false,
   };
 
-  orderHandler = (event: any) => {
+  orderHandler = (event: ContactDataEvent) => {
     event.preventDefault();
     this.setState({ loading: true });
     const order = {
