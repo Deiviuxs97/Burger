@@ -1,19 +1,26 @@
 import React, { Component } from "react";
 
+import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../../components/UI/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import classes from "./ContactData.module.css";
 import axios from "../../../axios-orders";
 
-interface contactDataProps {}
+interface contactDataProps extends RouteComponentProps {
+  price: any;
+  ingredients: any;
+}
 
 interface contactDataState {
   name: string;
   email: string;
+  address: {};
+  loading: boolean;
 }
 
-class ContactData extends Component<contactDataState, {}> {
-  state: contactDataState = {
+class ContactData extends Component<contactDataProps, contactDataState> {
+  state = {
     name: "",
     email: "",
     address: {
