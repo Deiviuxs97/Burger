@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, RouteComponentProps } from "react-router-dom";
 
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
 import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 
-interface checkOutStateProps {
+interface checkOutStateProps extends RouteComponentProps {
   ingredients: ingredientsBurgerBuilder;
-  history: any;
-  location: any;
   price: number;
-  match: any;
 }
 
 class Checkout extends Component<checkOutStateProps> {
