@@ -3,11 +3,11 @@ import React from "react";
 import classes from "./Button.module.css";
 
 interface props {
-  disabled: boolean | undefined;
+  disabled?: boolean;
   btnType: React.Key;
-  // clicked:
-  //   | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
-  //   | undefined;
+  clicked?:
+    | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    | undefined;
   children: React.ReactNode;
 }
 
@@ -15,7 +15,7 @@ const button = (props: props) => (
   <button
     disabled={props.disabled}
     className={[classes.Button, classes[props.btnType]].join(" ")}
-    // onClick={props.clicked}
+    onClick={props.clicked}
   >
     {props.children}
   </button>

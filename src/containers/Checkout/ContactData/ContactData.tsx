@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { RouteComponentProps } from "react-router-dom";
 
@@ -47,6 +48,7 @@ export interface InputElementConfig {
 interface contactDataProps extends RouteComponentProps {
   price: number;
   ingredients: ingredientsBurgerBuilder;
+  ings: any;
 }
 
 interface contactDataState {
@@ -156,7 +158,7 @@ class ContactData extends Component<contactDataProps, contactDataState> {
       ] = this.state.orderForm[formElementIdentifier as keyof OrderForms].value;
     }
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
     };
@@ -254,5 +256,10 @@ class ContactData extends Component<contactDataProps, contactDataState> {
     );
   }
 }
-
-export default ContactData;
+const mapStateToProps = (state: any) => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+  };
+};
+export default connect(mapStateToProps)(ContactData);
