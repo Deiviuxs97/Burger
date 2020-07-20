@@ -9,3 +9,8 @@
 .Danger {
   background: red;
 }
+
+.Button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}

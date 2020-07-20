@@ -6,8 +6,12 @@ import ContactData from "./ContactData/ContactData";
 import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 
 interface checkOutStateProps extends RouteComponentProps {
-  ingredients: ingredientsBurgerBuilder;
-  price: number;
+  ingredients?: ingredientsBurgerBuilder;
+}
+
+interface stateProps {
+  price: number | string;
+  totalPrice: number;
 }
 
 class Checkout extends Component<checkOutStateProps> {
@@ -22,12 +26,12 @@ class Checkout extends Component<checkOutStateProps> {
     const ingredients: { [key: string]: number } = {};
     let price: number | string = 0;
     for (let param of query.entries()) {
+      // ["salad", "1"]
       if (param[0] === "price") {
         price = param[1];
       } else {
         ingredients[param[0]] = +param[1];
       }
-      // ["salad", "1"]
     }
     this.setState({ ingredients: ingredients, totalPrice: price });
   }
