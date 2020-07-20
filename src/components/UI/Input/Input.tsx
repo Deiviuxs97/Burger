@@ -1,8 +1,23 @@
-import React from "react";
+import React, { ReactNode, ClassAttributes, InputHTMLAttributes } from "react";
 
 import classes from "./Input.module.css";
+interface inputOptionsProps {
+  displayValue: ReactNode;
+  value: string | number | undefined;
+}
 
-const input = (props: any) => {
+interface inputProps {
+  [x: string]: ReactNode;
+  value: string | number | readonly string[] | undefined;
+  elementConfig: any;
+  changed: any;
+  elementType: string;
+  touched: boolean;
+  shouldValidate: any;
+  invalid: boolean;
+}
+
+const input = (props: inputProps) => {
   let inputElement = null;
   const inputClasses = [classes.InputElement];
 
@@ -38,7 +53,7 @@ const input = (props: any) => {
           value={props.value}
           onChange={props.changed}
         >
-          {props.elementConfig.options.map((option: any) => (
+          {props.elementConfig.options.map((option: inputOptionsProps) => (
             <option
               key={option.value}
               value={option.value}

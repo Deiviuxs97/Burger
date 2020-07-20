@@ -9,16 +9,49 @@ import axios from "../../../axios-orders";
 import { ingredientsBurgerBuilder } from "../../BurgerBuilder/BurgerBuilder";
 import Input from "../../../components/UI/Input/Input";
 
+interface OrderForms {
+  name: InputTypeInput;
+  email: string;
+  street: string;
+  zipCode: number;
+  // deliveryMethod: string;
+}
+
+interface InputTypeInput {
+  elementConfig: InputElementConfig;
+  required: boolean;
+  minLength?: number;
+  maxLength?: number;
+}
+
+interface Input {
+  elementType: string;
+  isValid: boolean;
+  value: string;
+  hasTouched: boolean;
+  ShouldValidation: boolean;
+}
+
+export interface InputTypeSelect extends Input {
+  elementConfig: {};
+  validation: {
+    required: boolean;
+  };
+}
+
+export interface InputElementConfig {
+  type: string;
+  placeholder: string;
+}
+
 interface contactDataProps extends RouteComponentProps {
   price: number;
   ingredients: ingredientsBurgerBuilder;
-  // key: keyof key;
 }
-
-interface key {}
 
 interface contactDataState {
   orderForm: {};
+  formIsValid: {};
   loading: boolean;
 }
 
@@ -116,11 +149,11 @@ class ContactData extends Component<contactDataProps, contactDataState> {
   orderHandler = (event: ContactDataEvent) => {
     event.preventDefault();
     this.setState({ loading: true });
-    const formData: any = {};
+    const formData: { [element: string]: string } = {};
     for (let formElementIdentifier in this.state.orderForm) {
-      formData[formElementIdentifier] = this.state.orderForm[
-        formElementIdentifier
-      ].value;
+      formData[
+        formElementIdentifier as keyof OrderForms
+      ] = this.state.orderForm[formElementIdentifier as keyof OrderForms].value;
     }
     const order = {
       ingredients: this.props.ingredients,
@@ -138,7 +171,7 @@ class ContactData extends Component<contactDataProps, contactDataState> {
       });
   };
 
-  checkValidity(value: string, rules: any) {
+  checkValidity(value: string, rules: InputTypeInput) {
     let isValid = true;
 
     if (rules.required) {
@@ -156,7 +189,10 @@ class ContactData extends Component<contactDataProps, contactDataState> {
     return isValid;
   }
 
-  inputChangedHandler = (event: any, inputIdentifier: any) => {
+  inputChangedHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    inputIdentifier: string
+  ) => {
     const updatedOrderForm: any = {
       ...this.state.orderForm,
     };
@@ -183,7 +219,7 @@ class ContactData extends Component<contactDataProps, contactDataState> {
     for (let key in this.state.orderForm) {
       formElementsArray.push({
         id: key,
-        config: this.state.orderForm[key],
+        config: this.state.orderForm[key as keyof OrderForms],
       });
     }
     let form = (
@@ -197,9 +233,9 @@ class ContactData extends Component<contactDataProps, contactDataState> {
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
-            changed={(event: any) =>
-              this.inputChangedHandler(event, formElement.id)
-            }
+            changed={(
+              event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+            ) => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
         <Button btnType="Succes" disabled={!this.state.formIsValid}>

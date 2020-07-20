@@ -3,10 +3,20 @@ import React, { Component } from "react";
 import Modal from "../../components/UI/Modal/Modal";
 import Aux from "../Auxiliary/Auxiliary";
 
+interface withErrorHandlerFunctions {
+  eject: Function;
+  use: Function;
+}
+
+interface withErrorHandlerInterceptors {
+  response: withErrorHandlerFunctions;
+  request: withErrorHandlerFunctions;
+}
+
 interface pop {}
 
 interface axiosWithErrorHandler {
-  interceptors: any;
+  interceptors: withErrorHandlerInterceptors;
 }
 interface wrappedComponentWithErrorHandler {}
 
