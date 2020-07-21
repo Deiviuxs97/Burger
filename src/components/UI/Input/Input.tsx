@@ -1,4 +1,4 @@
-import React, { ReactNode, ClassAttributes, InputHTMLAttributes } from "react";
+import React, { ReactNode } from "react";
 
 import classes from "./Input.module.css";
 interface inputOptionsProps {

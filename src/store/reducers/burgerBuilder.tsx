@@ -1,6 +1,7 @@
-import * as actionTypes from "./actions";
+import * as actionTypes from "../actions/actionTypes";
 
 interface ingredients {
+  // [igKey: string]: any;
   salad: number;
   bacon: number;
   cheese: number;
@@ -8,18 +9,15 @@ interface ingredients {
 }
 
 interface wow {
+  ingredients: ingredients;
   ingredientName: string;
   type: string;
 }
 
 const initialState = {
-  ingredients: {
-    salad: 0,
-    bacon: 0,
-    cheese: 0,
-    meat: 0,
-  },
+  ingredients: {},
   totalPrice: 4,
+  error: false,
 };
 
 const INGREDIENT_PRICES = {
@@ -36,7 +34,7 @@ const reducer = (state = initialState, action: wow) => {
         ...state,
         ingredients: {
           ...state.ingredients,
-          [action.ingredientName as keyof ingredients]:
+          [action.ingredientName]:
             state.ingredients[action.ingredientName as keyof ingredients] + 1,
         },
         totalPrice:
@@ -54,6 +52,22 @@ const reducer = (state = initialState, action: wow) => {
         totalPrice:
           state.totalPrice -
           INGREDIENT_PRICES[action.ingredientName as keyof ingredients],
+      };
+    case actionTypes.SET_INGREDIENTS:
+      return {
+        ...state,
+        ingredients: {
+          salad: action.ingredients.salad,
+          bacon: action.ingredients.bacon,
+          cheese: action.ingredients.cheese,
+          meat: action.ingredients.meat,
+        },
+        error: false,
+      };
+    case actionTypes.FETCH_INGREDIENTS_FAILED:
+      return {
+        ...state,
+        error: true,
       };
     default:
       return state;

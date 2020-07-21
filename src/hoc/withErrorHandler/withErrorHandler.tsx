@@ -27,7 +27,7 @@ const withErrorHandler = (
   return class extends Component<pop> {
     state = {
       error: {
-        message: "",
+        message: "withErrorHandler",
       },
     };
 

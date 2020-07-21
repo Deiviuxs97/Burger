@@ -15,7 +15,7 @@ interface prev {
 
 class Layout extends Component {
   state = {
-    showSideDrawer: true,
+    showSideDrawer: false,
   };
   sideDrawerClosedHandler = () => {
     this.setState({ showSideDrawer: false });
