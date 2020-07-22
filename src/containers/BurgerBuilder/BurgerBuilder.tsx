@@ -11,13 +11,7 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import axios from "../../axios-orders";
 import { RouteComponentProps } from "react-router-dom";
 import * as burgerBuilderActions from "../../store/actions/index";
-
-// interface burgerBuilder {
-//   salad: number;
-//   bacon: number;
-//   cheese: number;
-//   meat: number;
-// }
+import * as actionTypes from "../../store/actions";
 
 export interface ingredientsBurgerBuilder {
   [igKey: string]: number;
@@ -28,34 +22,21 @@ export interface ingredientsBurgerBuilder {
 }
 
 interface burgerBuilderStateProps {
-  ingredients: ingredientsBurgerBuilder;
-  purchasable: boolean;
   purchasing: boolean;
-  loading: boolean;
-  error: boolean;
 }
 
 interface pop extends RouteComponentProps {
-  ings: any;
+  ings: ingredientsBurgerBuilder;
   onIngredientAdded: any;
   onIngredientRemoved: any;
-  price: any;
+  price: number;
   error: boolean;
   onInitIngredients: Function;
 }
 
 class BurgerBuilder extends Component<pop> {
   state: burgerBuilderStateProps = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
-    purchasable: false,
     purchasing: false,
-    loading: false,
-    error: false,
   };
 
   componentDidMount() {
@@ -84,26 +65,10 @@ class BurgerBuilder extends Component<pop> {
 
   purchaseContinueHandler = () => {
     this.props.history.push("/checkout");
-    // alert("You continue!");
-
-    // const queryParams = [];
-    // for (let i in this.state.ingredients) {
-    //   console.log(i);
-    //   queryParams.push(
-    //     encodeURIComponent(i) +
-    //       "=" +
-    //       encodeURIComponent(this.state.ingredients[i])
-    //   );
-    // }
-    // queryParams.push("price=" + this.props.price);
-    // const queryString = queryParams.join("&");
-    // this.props.history.push({
-    //   pathname: "/checkout",
-    //   search: "?" + queryString,
-    // });
   };
 
   render() {
+    console.log(this.props.ings);
     const disabledInfo: { [key: string]: number | boolean } = {
       ...this.props.ings,
     };

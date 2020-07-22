@@ -18,7 +18,6 @@ interface pop {}
 interface axiosWithErrorHandler {
   interceptors: withErrorHandlerInterceptors;
 }
-interface wrappedComponentWithErrorHandler {}
 
 const withErrorHandler = (
   WrappedComponent: Function,

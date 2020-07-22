@@ -18,13 +18,13 @@ export interface IngredientPriceProps {
 }
 
 interface reducerStateProps {
-  ingredients: ingredients;
+  ingredients: any;
   totalPrice: number;
   error: boolean;
 }
 
 const initialState = {
-  ingredients: {} as ingredients,
+  ingredients: null,
   totalPrice: 4,
   error: false,
 };
@@ -57,6 +57,7 @@ const reducer = (state: reducerStateProps = initialState, action: action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
     case actionTypes.SET_INGREDIENTS:
+      console.log("Error not true");
       return {
         ...state,
         ingredients: {
@@ -68,6 +69,7 @@ const reducer = (state: reducerStateProps = initialState, action: action) => {
         error: false,
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
+      console.log("Error true");
       return {
         ...state,
         error: true,

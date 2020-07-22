@@ -7,9 +7,11 @@ import ContactData from "./ContactData/ContactData";
 import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 
 interface checkOutStateProps extends RouteComponentProps {
-  ingredients?: ingredientsBurgerBuilder;
-  ings: any;
-  price: number;
+  ingredients: any;
+  ings: ingredientsBurgerBuilder;
+  price: any;
+  history: any;
+  location: any;
 }
 
 class Checkout extends Component<checkOutStateProps> {
