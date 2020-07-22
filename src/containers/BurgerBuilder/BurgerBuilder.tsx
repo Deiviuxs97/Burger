@@ -41,7 +41,7 @@ interface pop extends RouteComponentProps {
   onIngredientRemoved: any;
   price: any;
   error: boolean;
-  onInitIngredients: any;
+  onInitIngredients: Function;
 }
 
 class BurgerBuilder extends Component<pop> {
@@ -170,7 +170,7 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(burgerBuilderActions.addIngredient(ingName)),
     onIngredientRemoved: (ingName: string) =>
       dispatch(burgerBuilderActions.removeIngredient(ingName)),
-    inInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
+    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
   };
 };
 export default connect(
