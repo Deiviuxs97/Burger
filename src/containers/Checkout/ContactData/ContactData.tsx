@@ -252,9 +252,9 @@ class ContactData extends Component<contactDataProps, contactDataState> {
 }
 const mapStateToProps = (state: any) => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    loading: state.loading,
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    loading: state.order.loading,
   };
 };
 

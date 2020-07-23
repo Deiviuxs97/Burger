@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import burgerBuilderReducer from "./store/reducers/burgerBuilder";
 import thunk from "redux-thunk";
+import orderReducer from "./store/reducers/order";
 
 declare global {
   interface Window {
@@ -17,7 +18,7 @@ declare global {
 
 const rootReducer = combineReducers({
   burgerBuilder: burgerBuilderReducer,
-  // order: orderReducer
+  order: orderReducer,
 });
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

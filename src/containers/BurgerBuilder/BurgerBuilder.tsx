@@ -10,7 +10,7 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import axios from "../../axios-orders";
 import { RouteComponentProps } from "react-router-dom";
-import * as burgerBuilderActions from "../../store/actions/index";
+import * as actions from "../../store/actions/index";
 // import * as actionTypes from "../../store/actions";
 
 export interface ingredientsBurgerBuilder {
@@ -32,6 +32,7 @@ interface pop extends RouteComponentProps {
   price: number;
   error: boolean;
   onInitIngredients: Function;
+  onInitPurchase: Function;
 }
 
 class BurgerBuilder extends Component<pop> {
@@ -64,6 +65,7 @@ class BurgerBuilder extends Component<pop> {
   };
 
   purchaseContinueHandler = () => {
+    this.props.onInitPurchase();
     this.props.history.push("/checkout");
   };
 
@@ -133,10 +135,11 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     onIngredientAdded: (ingName: string) =>
-      dispatch(burgerBuilderActions.addIngredient(ingName)),
+      dispatch(actions.addIngredient(ingName)),
     onIngredientRemoved: (ingName: string) =>
-      dispatch(burgerBuilderActions.removeIngredient(ingName)),
-    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
+      dispatch(actions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitPurchase: () => dispatch(actions.purchaseInit()),
   };
 };
 export default connect(
