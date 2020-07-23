@@ -57,7 +57,6 @@ const reducer = (state: reducerStateProps = initialState, action: action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
     case actionTypes.SET_INGREDIENTS:
-      console.log("Error not true");
       return {
         ...state,
         ingredients: {
@@ -66,10 +65,9 @@ const reducer = (state: reducerStateProps = initialState, action: action) => {
           cheese: action.ingredients.cheese,
           meat: action.ingredients.meat,
         },
-        error: false,
+        error: true,
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
-      console.log("Error true");
       return {
         ...state,
         error: true,

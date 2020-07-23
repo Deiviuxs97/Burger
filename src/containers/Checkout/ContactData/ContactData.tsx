@@ -9,6 +9,8 @@ import classes from "./ContactData.module.css";
 import axios from "../../../axios-orders";
 import { ingredientsBurgerBuilder } from "../../BurgerBuilder/BurgerBuilder";
 import Input from "../../../components/UI/Input/Input";
+import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
+import * as actions from "../../../store/actions/index";
 
 interface OrderForms {
   name: InputTypeInput;
@@ -49,12 +51,13 @@ interface contactDataProps extends RouteComponentProps {
   price: number;
   ingredients: ingredientsBurgerBuilder;
   ings: any;
+  onOrderBurger: Function;
+  loading: boolean;
 }
 
 interface contactDataState {
   orderForm: {};
   formIsValid: {};
-  loading: boolean;
 }
 
 interface ContactDataEvent {
@@ -145,12 +148,10 @@ class ContactData extends Component<contactDataProps, contactDataState> {
       },
     },
     formIsValid: false,
-    loading: false,
   };
 
   orderHandler = (event: ContactDataEvent) => {
     event.preventDefault();
-    this.setState({ loading: true });
     const formData: { [element: string]: string } = {};
     for (let formElementIdentifier in this.state.orderForm) {
       formData[
@@ -162,6 +163,8 @@ class ContactData extends Component<contactDataProps, contactDataState> {
       price: this.props.price,
       orderData: formData,
     };
+
+    this.props.onOrderBurger(order);
   };
 
   checkValidity(value: string, rules: InputTypeInput) {
@@ -236,7 +239,7 @@ class ContactData extends Component<contactDataProps, contactDataState> {
         </Button>
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -251,6 +254,18 @@ const mapStateToProps = (state: any) => {
   return {
     ings: state.ingredients,
     price: state.totalPrice,
+    loading: state.loading,
   };
 };
-export default connect(mapStateToProps)(ContactData);
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onOrderBurger: (orderData: any) =>
+      dispatch(actions.purchaseBurger(orderData)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(ContactData, axios));

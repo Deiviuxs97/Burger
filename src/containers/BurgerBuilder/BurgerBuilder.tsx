@@ -11,7 +11,7 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import axios from "../../axios-orders";
 import { RouteComponentProps } from "react-router-dom";
 import * as burgerBuilderActions from "../../store/actions/index";
-import * as actionTypes from "../../store/actions";
+// import * as actionTypes from "../../store/actions";
 
 export interface ingredientsBurgerBuilder {
   [igKey: string]: number;
@@ -68,7 +68,7 @@ class BurgerBuilder extends Component<pop> {
   };
 
   render() {
-    console.log(this.props.ings);
+    console.log(this.props, "kokie comp");
     const disabledInfo: { [key: string]: number | boolean } = {
       ...this.props.ings,
     };
@@ -122,10 +122,11 @@ class BurgerBuilder extends Component<pop> {
 }
 
 const mapStateToProps = (state: any) => {
+  console.log(state, "koks mano state");
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    error: state.error,
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    error: state.burgerBuilder.error,
   };
 };
 
