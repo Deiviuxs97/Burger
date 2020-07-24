@@ -34,13 +34,18 @@ const withErrorHandler = (
     resInterceptor?: pop;
 
     componentWillMount() {
+      console.log(this, " kas cia");
       this.reqInterceptor = axios.interceptors.request.use((req: pop) => {
         this.setState({ error: null });
         return req;
       });
       this.resInterceptor = axios.interceptors.response.use(
-        (res: pop) => res,
+        (res: pop) => {
+          console.log(res, "res");
+          return res;
+        },
         (error: pop) => {
+          console.log(error, "erroraas");
           this.setState({ error: error });
         }
       );

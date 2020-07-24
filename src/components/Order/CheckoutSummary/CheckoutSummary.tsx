@@ -16,6 +16,7 @@ interface checkoutSummaryProps {
 }
 
 const checkoutSummary = (props: checkoutSummaryProps) => {
+  console.log(props);
   return (
     <div className={classes.CheckoutSummary}>
       <h1>We hope it tastes well!</h1>

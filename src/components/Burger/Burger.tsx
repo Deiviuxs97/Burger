@@ -9,12 +9,9 @@ interface burger {
 }
 
 const burger = (props: burger) => {
-  console.log(props);
   let transformedIngredients = Object.keys(props.ingredients)
     .map((igKey) => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
-        console.log(igKey + i);
-        console.log(igKey);
         return <BurgerIngredient key={igKey + i} type={igKey} />;
       });
     })

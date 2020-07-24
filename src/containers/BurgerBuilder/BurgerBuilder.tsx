@@ -41,7 +41,6 @@ class BurgerBuilder extends Component<pop> {
   };
 
   componentDidMount() {
-    console.log(this.props);
     this.props.onInitIngredients();
   }
 
@@ -70,7 +69,6 @@ class BurgerBuilder extends Component<pop> {
   };
 
   render() {
-    console.log(this.props, "kokie comp");
     const disabledInfo: { [key: string]: number | boolean } = {
       ...this.props.ings,
     };
@@ -124,7 +122,6 @@ class BurgerBuilder extends Component<pop> {
 }
 
 const mapStateToProps = (state: any) => {
-  console.log(state, "koks mano state");
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,

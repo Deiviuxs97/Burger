@@ -28,6 +28,7 @@ class Checkout extends Component<checkOutStateProps> {
 
   render() {
     let summary = <Redirect to="/" />;
+
     if (this.props.ings) {
       const purchasedRedirect = this.props.purchased ? (
         <Redirect to="/" />
@@ -47,7 +48,7 @@ class Checkout extends Component<checkOutStateProps> {
         </div>
       );
     }
-    return { summary };
+    return summary;
   }
 }
 
