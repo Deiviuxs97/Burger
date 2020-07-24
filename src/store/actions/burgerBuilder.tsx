@@ -36,7 +36,7 @@ export const fetchIngredientsFailed = (): actionTypes.FetchIngredientAction => {
 };
 
 export const initIngredients = () => {
-  return (dispatch: any) => {
+  return (dispatch: Function) => {
     axios
       .get("https://react-my-burger-1c0e3.firebaseio.com/ingredients.json")
       .then((response) => {
