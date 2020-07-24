@@ -1,4 +1,4 @@
-import { ingredients } from "../reducers/burgerBuilder";
+import { ingredientsBurgerBuilder } from "../../containers/BurgerBuilder/BurgerBuilder";
 
 export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const REMOVE_INGREDIENT = "REMOVE_INGREDIENT";
@@ -26,7 +26,7 @@ export interface RemoveIngredientAction {
 
 export interface SetIngredientAction {
   type: typeof SET_INGREDIENTS;
-  ingredients: ingredients;
+  ingredients: ingredientsBurgerBuilder;
 }
 
 export interface FetchIngredientAction {

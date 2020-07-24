@@ -3,9 +3,10 @@ import React from "react";
 
 import classes from "./Burger.module.css";
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
+import { ingredientsBurgerBuilder } from "../../containers/BurgerBuilder/BurgerBuilder";
 
 interface burger {
-  ingredients: { [igKey: string]: number };
+  ingredients: ingredientsBurgerBuilder;
 }
 
 const burger = (props: burger) => {

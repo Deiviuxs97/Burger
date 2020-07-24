@@ -5,12 +5,11 @@ import { connect } from "react-redux";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
 import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
-import * as actions from "../../store/actions/index";
 
 interface checkOutStateProps extends RouteComponentProps {
-  ingredients: any;
+  ingredients: ingredientsBurgerBuilder;
   ings: ingredientsBurgerBuilder;
-  price: any;
+  price: number;
   history: any;
   location: any;
   onInitPurchase: Function;

@@ -50,7 +50,7 @@ export interface InputElementConfig {
 interface contactDataProps extends RouteComponentProps {
   price: number;
   ingredients: ingredientsBurgerBuilder;
-  ings: any;
+  ings: ingredientsBurgerBuilder;
   onOrderBurger: Function;
   loading: boolean;
 }
@@ -258,9 +258,9 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onOrderBurger: (orderData: any) =>
+    onOrderBurger: (orderData: number) =>
       dispatch(actions.purchaseBurger(orderData)),
   };
 };

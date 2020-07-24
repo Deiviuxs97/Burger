@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-orders";
 
-export const purchaseBurgerSuccess = (id: number, orderData: any) => {
+export const purchaseBurgerSuccess = (id: number, orderData: number) => {
   return {
     type: actionTypes.PURCHASE_BURGER_SUCCESS,
     orderId: id,
@@ -9,7 +9,7 @@ export const purchaseBurgerSuccess = (id: number, orderData: any) => {
   };
 };
 
-export const purchaseBurgerFail = (error: any) => {
+export const purchaseBurgerFail = (error: boolean) => {
   return {
     type: actionTypes.PURCHASE_BURGER_FAIL,
     error: error,
@@ -22,8 +22,8 @@ export const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData: any) => {
-  return (dispatch: any) => {
+export const purchaseBurger = (orderData: number) => {
+  return (dispatch: Function) => {
     dispatch(purchaseBurgerStart());
     axios
       .post("/orders.json", orderData)
@@ -43,14 +43,14 @@ export const purchaseInit = () => {
   };
 };
 
-export const fetchOrdersSuccess = (orders: any) => {
+export const fetchOrdersSuccess = (orders: number[]) => {
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,
     orders: orders,
   };
 };
 
-export const fetchOrdersFail = (error: any) => {
+export const fetchOrdersFail = (error: boolean) => {
   return {
     type: actionTypes.FETCH_ORDERS_FAIL,
     error: error,
@@ -64,7 +64,7 @@ export const fetchOrdersStart = () => {
 };
 
 export const fetchOrders = () => {
-  return (dispatch: any) => {
+  return (dispatch: Function) => {
     dispatch(fetchOrdersStart());
     axios
       .get("/orders.json")

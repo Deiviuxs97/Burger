@@ -61,6 +61,7 @@ const withErrorHandler = (
     };
 
     render() {
+      console.log("witherrorrender");
       return (
         <Aux>
           <Modal

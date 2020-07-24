@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-orders";
-import { ingredients } from "../reducers/burgerBuilder";
+import { ingredientsBurgerBuilder } from "../../containers/BurgerBuilder/BurgerBuilder";
 
 export const addIngredient = (
   name: string
@@ -21,7 +21,7 @@ export const removeIngredient = (
 };
 
 export const setIngredients = (
-  ingredients: ingredients
+  ingredients: ingredientsBurgerBuilder
 ): actionTypes.SetIngredientAction => {
   return {
     type: actionTypes.SET_INGREDIENTS,

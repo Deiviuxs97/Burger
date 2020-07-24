@@ -27,8 +27,8 @@ interface burgerBuilderStateProps {
 
 interface pop extends RouteComponentProps {
   ings: ingredientsBurgerBuilder;
-  onIngredientAdded: any;
-  onIngredientRemoved: any;
+  onIngredientAdded: Function;
+  onIngredientRemoved: Function;
   price: number;
   error: boolean;
   onInitIngredients: Function;

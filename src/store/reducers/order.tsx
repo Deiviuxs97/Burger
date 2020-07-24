@@ -1,21 +1,42 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
+interface tryNot {
+  concat: any;
+}
+
+interface ordersInterface {
+  orders: tryNot;
+}
+
+interface actionInterface {
+  type: tryNot;
+  orders: number;
+  orderData: number;
+  orderId: number;
+}
+
 const initialState = {
   orders: [],
   loading: false,
   purchased: false,
 };
 
-const purchaseInit = (state: any, action: any) => {
+const purchaseInit = (state: ordersInterface, action: actionInterface) => {
   return updateObject(state, { purchased: false });
 };
 
-const purchaseBurgerStart = (state: any, action: any) => {
+const purchaseBurgerStart = (
+  state: ordersInterface,
+  action: actionInterface
+) => {
   return updateObject(state, { purchased: true });
 };
 
-const purchaseBurgerSuccess = (state: any, action: any) => {
+const purchaseBurgerSuccess = (
+  state: ordersInterface,
+  action: actionInterface
+) => {
   const newOrder = updateObject(action.orderData, { id: action.orderId });
   return updateObject(state, {
     loading: false,
@@ -24,23 +45,32 @@ const purchaseBurgerSuccess = (state: any, action: any) => {
   });
 };
 
-const purchaseBurgerFail = (state: any, action: any) => {
+const purchaseBurgerFail = (
+  state: ordersInterface,
+  action: actionInterface
+) => {
   return updateObject(state, { loading: false });
 };
 
-const fetchOrdersStart = (state: any, action: any) => {
+const fetchOrdersStart = (state: ordersInterface, action: actionInterface) => {
   return updateObject(state, { loading: true });
 };
 
-const fetchOrdersSuccess = (state: any, action: any) => {
+const fetchOrdersSuccess = (
+  state: ordersInterface,
+  action: actionInterface
+) => {
   return updateObject(state, { orders: action.orders, loading: false });
 };
 
-const fetchOrdersFail = (state: any, action: any) => {
+const fetchOrdersFail = (state: ordersInterface, action: actionInterface) => {
   return updateObject(state, { loading: false });
 };
 
-const reducer = (state: any = initialState, action: any) => {
+const reducer = (
+  state: ordersInterface = initialState,
+  action: actionInterface
+) => {
   switch (action.type) {
     case actionTypes.PURCHASE_INIT:
       return purchaseInit(state, action);

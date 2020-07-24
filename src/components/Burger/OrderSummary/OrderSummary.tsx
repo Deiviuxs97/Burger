@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Button from "../../UI/Button/Button";
+import { ingredientsBurgerBuilder } from "../../../containers/BurgerBuilder/BurgerBuilder";
 
 interface props {
   price: number;
@@ -12,7 +13,7 @@ interface props {
   purchaseCancelled:
     | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
     | undefined;
-  ingredients: { [x: string]: React.ReactNode };
+  ingredients: ingredientsBurgerBuilder;
 }
 
 class OrderSummary extends Component<props> {

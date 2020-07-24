@@ -1,21 +1,10 @@
 import * as actionTypes from "../actions/actionTypes";
 import { action } from "../actions/actionTypes";
 import { updateObject } from "../utility";
+import { ingredientsBurgerBuilder } from "../../containers/BurgerBuilder/BurgerBuilder";
 
-export interface ingredients {
-  [key: string]: number;
-  salad: number;
-  bacon: number;
-  cheese: number;
-  meat: number;
-}
-
-export interface IngredientPriceProps {
-  [key: string]: number;
-  salad: number;
-  bacon: number;
-  cheese: number;
-  meat: number;
+interface burgerBuilderActions {
+  ingredientName: string;
 }
 
 interface reducerStateProps {
@@ -30,14 +19,17 @@ const initialState = {
   error: false,
 };
 
-const INGREDIENT_PRICES: IngredientPriceProps = {
+const INGREDIENT_PRICES: ingredientsBurgerBuilder = {
   salad: 0.5,
   cheese: 0.4,
   meat: 1.3,
   bacon: 0.7,
 };
 
-const addIngredient = (state: any, action: any) => {
+const addIngredient = (
+  state: reducerStateProps,
+  action: burgerBuilderActions
+) => {
   const updatedIngredient = {
     [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
   };
@@ -49,7 +41,10 @@ const addIngredient = (state: any, action: any) => {
   return updateObject(state, updatedState);
 };
 
-const removeIngredient = (state: any, action: any) => {
+const removeIngredient = (
+  state: reducerStateProps,
+  action: burgerBuilderActions
+) => {
   const updatedIng = {
     [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
   };
@@ -61,7 +56,7 @@ const removeIngredient = (state: any, action: any) => {
   return updateObject(state, updatedSt);
 };
 
-const setIngredients = (state: any, action: any) => {
+const setIngredients = (state: reducerStateProps, action: any) => {
   return updateObject(state, {
     ingredients: {
       salad: action.ingredients.salad,
@@ -74,7 +69,7 @@ const setIngredients = (state: any, action: any) => {
   });
 };
 
-const fetchIngredientsFailed = (state: any, action: any) => {
+const fetchIngredientsFailed = (state: reducerStateProps, action: any) => {
   return updateObject(state, { error: true });
 };
 
