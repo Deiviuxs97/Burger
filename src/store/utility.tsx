@@ -1,4 +1,6 @@
-export const updateObject = (oldObject: any, updatedProperties: any) => {
+interface utility{}
+
+export const updateObject = (oldObject: utility, updatedProperties: utility) => {
   return {
     ...oldObject,
     ...updatedProperties,

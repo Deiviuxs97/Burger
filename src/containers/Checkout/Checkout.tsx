@@ -6,14 +6,26 @@ import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSumm
 import ContactData from "./ContactData/ContactData";
 import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 
-interface checkOutStateProps extends RouteComponentProps {
+interface chechout{
+  ingredients: ingredientsBurgerBuilder;
+  purchased: boolean;
+}
+
+interface checkoutState {
+  burgerBuilder: chechout;
+  order: chechout;
+}
+
+interface checkOutStateProps {
   ingredients: ingredientsBurgerBuilder;
   ings: ingredientsBurgerBuilder;
   price: number;
-  history: any;
-  location: any;
+  history: {replace: Function;
+    goBack: Function;};
+  location: Function;
   onInitPurchase: Function;
   purchased: boolean;
+  match: {path:Function};
 }
 
 class Checkout extends Component<checkOutStateProps> {
@@ -51,7 +63,7 @@ class Checkout extends Component<checkOutStateProps> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: checkoutState) => {
   return {
     ings: state.burgerBuilder.ingredients,
     purchased: state.order.purchased,

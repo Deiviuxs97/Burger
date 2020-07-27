@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 
 import classes from "./Input.module.css";
+
+
 interface inputOptionsProps {
   displayValue: ReactNode;
   value: string | number | undefined;
@@ -49,7 +51,7 @@ const input = (props: inputProps) => {
     case "select":
       inputElement = (
         <select
-          className={inputClasses}
+          className={inputClasses.join(" ")}
           value={props.value}
           onChange={props.changed}
         >

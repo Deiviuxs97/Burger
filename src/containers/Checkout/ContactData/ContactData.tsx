@@ -12,6 +12,17 @@ import Input from "../../../components/UI/Input/Input";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../../store/actions/index";
 
+interface contactData {
+  loading: boolean;
+  totalPrice: number;
+  ingredients: ingredientsBurgerBuilder;
+} 
+
+interface contactDataInterface {
+  burgerBuilder: contactData;
+  order: contactData;
+} 
+
 interface OrderForms {
   name: InputTypeInput;
   email: string;
@@ -250,7 +261,7 @@ class ContactData extends Component<contactDataProps, contactDataState> {
     );
   }
 }
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: contactDataInterface) => {
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
@@ -268,4 +279,4 @@ const mapDispatchToProps = (dispatch: Function) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withErrorHandler(ContactData, axios));
+)(ContactData);

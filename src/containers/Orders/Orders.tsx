@@ -8,6 +8,13 @@ import { ingredientsBurgerBuilder } from "../BurgerBuilder/BurgerBuilder";
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
+interface orders{
+  order: {
+    orders: string;
+    loading: boolean;
+  };
+}
+
 interface orderStatePro {
   orders: [
     {
@@ -46,7 +53,7 @@ class Orders extends Component<orderStatePro> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: orders) => {
   return {
     orders: state.order.orders,
     loading: state.order.loading,

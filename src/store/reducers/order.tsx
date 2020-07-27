@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
 interface tryNot {
-  concat: any;
+  concat: Function;
 }
 
 interface ordersInterface {

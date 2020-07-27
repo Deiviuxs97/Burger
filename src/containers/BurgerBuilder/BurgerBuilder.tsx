@@ -21,6 +21,16 @@ export interface ingredientsBurgerBuilder {
   meat: number;
 }
 
+interface burgerBuilder {
+  ingredients: string;
+  totalPrice: number;
+  error: boolean;
+}
+
+interface burgerBuilderState{
+  burgerBuilder: burgerBuilder;
+}
+
 interface burgerBuilderStateProps {
   purchasing: boolean;
 }
@@ -121,7 +131,7 @@ class BurgerBuilder extends Component<pop> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: burgerBuilderState) => {
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
@@ -129,7 +139,7 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     onIngredientAdded: (ingName: string) =>
       dispatch(actions.addIngredient(ingName)),

@@ -3,6 +3,13 @@ import { action } from "../actions/actionTypes";
 import { updateObject } from "../utility";
 import { ingredientsBurgerBuilder } from "../../containers/BurgerBuilder/BurgerBuilder";
 
+interface burgerBuilderActio {
+}
+
+interface burgerBuilderAction {
+  ingredients: ingredientsBurgerBuilder;
+}
+
 interface burgerBuilderActions {
   ingredientName: string;
 }
@@ -56,7 +63,7 @@ const removeIngredient = (
   return updateObject(state, updatedSt);
 };
 
-const setIngredients = (state: reducerStateProps, action: any) => {
+const setIngredients = (state: reducerStateProps, action: burgerBuilderAction) => {
   return updateObject(state, {
     ingredients: {
       salad: action.ingredients.salad,
@@ -69,7 +76,7 @@ const setIngredients = (state: reducerStateProps, action: any) => {
   });
 };
 
-const fetchIngredientsFailed = (state: reducerStateProps, action: any) => {
+const fetchIngredientsFailed = (state: reducerStateProps, action: burgerBuilderActio) => {
   return updateObject(state, { error: true });
 };
 
